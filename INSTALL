@@ -1,0 +1,18 @@
+/*
+ * HistoryPlot
+ *
+ *
+ * Copyright (c) 2014-2015 Advanced Institute for Computational Science, RIKEN. 
+ * All rights reserved.
+ *
+ */
+ 
+# Required Software
+- Python 2.7 or later (https://www.python.org/)
+- Matplotlib 1.2.1 or later (http://matplotlib.org/)
+
+
+# How to install
+1) Copy decompressed HistoryPlot directory at your specified directory.
+2) set environment variabe PATH for the user specified directory
+  $ export PATH=$PATH:/user-specified-direcotry/HistoryPlot
