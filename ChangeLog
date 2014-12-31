@@ -13,4 +13,5 @@ REVISION HISTORY
 
 --------------------------
 2014-12-31
-initial comit
+- add range parameter, Konatu.ttf and eps & pdf images [0.7.0]
+- initial commit [0.6.0]

@@ -12,6 +12,13 @@
 import numpy as np
 import sys
 
+import ParamDef as param
+#--------------------------------------------------------------
+def utf(any_str):
+        if param.G_DECODE_STR == 1 : new_str = any_str.decode('utf-8')
+        else: new_str = any_str
+        return new_str
+      
 #-----------------------------------------------------------------------------
 """
 箱ひげ図（はこひげず、箱髭図、box plot）
@@ -50,14 +57,14 @@ AVG_VAL = 6
 IQR_VAL = 7
 
 g_ValueName = ['', '', '', '', '', '', '', '']
-g_ValueName[MED_VAL] = u'中央値(Q2)'         #median (Q2)
-g_ValueName[MIN_VAL] = u'最小値'             #minimum
-g_ValueName[MAX_VAL] = u'最大値'             #maximum
-g_ValueName[DIF_VAL] = u'最大最小差値'       #range
-g_ValueName[Q1_VAL]  = u'第1四分位数(Q1)'    #first quartile (Q1)
-g_ValueName[Q3_VAL]  = u'第3四分位数(Q3)'    #third quartile (Q3)
-g_ValueName[AVG_VAL] = u'平均値'             #average
-g_ValueName[IQR_VAL] = u'四分位数範囲(IQR)'  #Interquartile range (IQR)
+g_ValueName[MED_VAL] = '中央値(Q2)'         #median (Q2)
+g_ValueName[MIN_VAL] = '最小値'             #minimum
+g_ValueName[MAX_VAL] = '最大値'             #maximum
+g_ValueName[DIF_VAL] = '最大最小差値'       #range
+g_ValueName[Q1_VAL]  = '第1四分位数(Q1)'    #first quartile (Q1)
+g_ValueName[Q3_VAL]  = '第3四分位数(Q3)'    #third quartile (Q3)
+g_ValueName[AVG_VAL] = '平均値'             #average
+g_ValueName[IQR_VAL] = '四分位数範囲(IQR)'  #Interquartile range (IQR)
 
 # 配列データの分位数ルゴリズム
 #g_qtype = 1 # inverse empirical distrib.function., R type 1

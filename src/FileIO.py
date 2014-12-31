@@ -5,8 +5,8 @@
 # Purpose:
 # Author:      zrm
 # Created:     11/06/2014
-# Copyright:
-# Licence:
+# Copyright: AICS, RIKEN
+# Licence: New BSD (2-caluse)
 #-------------------------------------------------------------------------------
 
 import numpy as np
@@ -24,23 +24,30 @@ g_dict = dict(zip(g_keys, g_vals))
 g_s = [7,  20, 34, 42, 56, 70, 82]
 g_e = [20, 34, 42, 56, 70, 82, 91]
 
+import ParamDef as param
+#--------------------------------------------------------------
+def utf(any_str):
+        if param.G_DECODE_STR == 1 : new_str = any_str.decode('utf-8')
+        else: new_str = any_str
+        return new_str
+
 #--------------------------------------------------------------
 def load_data(filename):
 
         my_dict = read_file(filename)
 
-        print u'\n 入力ファイル名： \n', filename
-        print u'\n Data Retained in Python Dictionary. len = ', len(my_dict), '\n\n'
+        print utf('\n 入力ファイル名： \n'), filename
+        print utf('\n Data Retained in Python Dictionary. len = '), len(my_dict), '\n\n'
 
         for func_name in my_dict:
-                #print '\nfunction name =', func_name
+                #print utf('\nfunction name ='), func_name
                 sequence_vec = my_dict[func_name]
-                #print ' ', len(sequence_vec)
+                #print utf(' '), len(sequence_vec)
                 #for data in sequence_vec:
                 #        print data
 
         #Giving function name and value name, we can get array from my_dict
-        #print '\ntry to get array by given function name and value name'
+        #print utf('\ntry to get array by given function name and value name')
 
         n_funcs = len(sequence_vec)
         return my_dict
@@ -56,7 +63,7 @@ def read_file(filename):
         line = f.readline()
         while not the_str_data_begin in line:
                 line = f.readline()
-        print '\nRead Data: ', the_str_data_begin
+        print utf('\nRead Data: '), the_str_data_begin
 
         line = f.readline() # get the empty line
 
@@ -65,10 +72,10 @@ def read_file(filename):
                 if not func_name: break
                 func_name = func_name.rstrip('\n')
 
-                #print '\nfunction name = ', '[', func_name, ']\n',
+                #print utf('\nfunction name = '), utf('['), func_name, utf(']\n')
                 unicode(func_name).strip()
                 func_name.strip()
-                #print '\nfunction name = ', '[', func_name, ']\n',
+                #print utf('\nfunction name = '), utf('['), func_name, utf(']\n')
 
                 dummy_line = f.readline() # get the empty line "   call accm[s] accm[%]..."
 
@@ -77,7 +84,7 @@ def read_file(filename):
 
                 while '#' in line:
                         values = get_data_from_line(line)
-                        #print 'line  :', line, 'return:', values
+                        #print utf('line  :'), line, utf('return:'), values
                         sequence_vec.append(values)
 
                         line = f.readline()

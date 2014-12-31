@@ -6,8 +6,8 @@
 # Purpose:
 # Author:      zrm
 # Created:     11/06/2014
-# Copyright:
-# Licence:
+# Copyright: AICS, RIKEN
+# Licence: New BSD (2-caluse)
 #-------------------------------------------------------------------------------
 
 # PyScripterを使用している際に、ファイルを shift_jis で保存して下さい
@@ -20,10 +20,16 @@ import sys
 from PlotOption import *
 from Quantile   import *
 
-import ParamDef         as param
 import FileIO           as io
 import PlotMatplotlib   as my_plt
 import Quantile         as q
+
+import ParamDef as param
+#--------------------------------------------------------------
+def utf(any_str):
+        if param.G_DECODE_STR == 1 : new_str = any_str.decode('utf-8')
+        else: new_str = any_str
+        return new_str
 
 #--------------------------------------------------------------
 def verify_filename(filename):
@@ -41,7 +47,7 @@ def get_value(my_dict, func_name, val_name, index):
         values = sequence_vec[index]
         i = io.g_dict[val_name]
         value = values[i]
-        #print func_name, val_name, '\t value = ', value
+        #print func_name, val_name, utf('\t value = '), value
         return value
 
 #--------------------------------------------------------------
@@ -58,7 +64,7 @@ def get_array(my_dict, func_name, val_name):
 #　箱ひげ図作図
 def create_boxplot(my_dict, func_names, val_name, mute=0):
 
-        print u'箱ひげ図作図', val_name
+        print utf('箱ひげ図作図'), val_name
 
         ticks = []
         labels = []
@@ -85,7 +91,7 @@ def create_boxplot(my_dict, func_names, val_name, mute=0):
                         array_dict[func_name] = g_Values[sortby]
 
         # 中央値で array_dict をソート(降順)する
-        print u'中央値で array_dict をソート(降順)する'
+        print utf('中央値で array_dict をソート(降順)する')
 
         # -----------------------------------------------------------
         # 作図仕様を指定する(箱ひげ図)
@@ -93,7 +99,7 @@ def create_boxplot(my_dict, func_names, val_name, mute=0):
 
         ii = 1
         for func_name, median_val in sorted(array_dict.items(), key=lambda x:x[1], reverse=True):
-            #print func_name, '\t\t', median_val
+            #print func_name, utf('\t\t'), median_val
             array = get_array( my_dict, func_name, val_name )
             list_of_data_array.append(array)
             labels.append(func_name)
@@ -113,8 +119,8 @@ def create_boxplot(my_dict, func_names, val_name, mute=0):
         # 作図仕様を指定する(箱ひげ図)
         opt1 = PlotOption()
         opt1.set_figsize( 15, 7 )
-        opt1.set_title( u'Detail of Timing Statistics', 24, 'k' )
-        opt1.set_label( u'関数名', val_name, 18, 'red' )
+        opt1.set_title( 'Detail of Timing Statistics', 24, 'k' )
+        opt1.set_label( '関数名', val_name, 18, 'red' )
         opt1.set_draw( 'c', 'k', 0.6 )
         #opt1.set_yrange(0.0, 10.0)
         opt1.set_tick( 'blue', 14, 0, 0 )
@@ -128,7 +134,7 @@ def create_boxplot(my_dict, func_names, val_name, mute=0):
 #　棒グラフ作図
 def create_barplot(my_dict, func_name, val_name, is_bar=0, mute=0):
 
-        print u'棒グラフ作図', u'関数名=', func_name, u'値=', val_name
+        print utf('棒グラフ作図'), utf('関数名='), func_name, utf('値='), val_name
 
         #　作図のデータ配列を取り出す
         array = get_array( my_dict, func_name, val_name )
@@ -155,11 +161,11 @@ def create_barplot(my_dict, func_name, val_name, is_bar=0, mute=0):
 
         # -----------------------------------------------------------
         # 作図仕様を指定する(棒グラフ)
-        title_label = u'関数名:  ' + func_name
+        title_label = '関数名:  ' + func_name
         opt2 = PlotOption()
         opt2.set_figsize( 20, 7 )
-        opt2.set_title( u'Detail of Timing Statistics', 20, 'green' )
-        opt2.set_label( u'プロセス', val_name, 18, 'blue' )
+        opt2.set_title( 'Detail of Timing Statistics', 20, 'green' )
+        opt2.set_label( 'プロセス', val_name, 18, 'blue' )
         opt2.set_xrange( 0, n_max )
         #opt2.set_yrange( 0, 0.025 )
         if is_bar == 1 : opt2.set_draw( 'c', 'k', 0.6 )
@@ -183,10 +189,10 @@ if __name__ == '__main__':
         PlotPerformanceData.py bar
         PlotPerformanceData.py xy
     """
-    print u'\n'
+    print utf('\n')
     
     arguments = sys.argv
-    for arg in arguments : print u'引数：' + arg
+    for arg in arguments : print utf('引数：') + arg
 
     my_dict = io.load_data('profiling.txt')
 
@@ -204,10 +210,10 @@ if __name__ == '__main__':
 
     if b_xyplot == 1: b_barplot = 1
 
-    print u'棒グラフ作図モード b_barplot = ', b_barplot
-    print u'箱ひげ図作図モード b_boxplot = ', b_boxplot
-    print u'散布図XY作図モード b_xyplot  = ', b_xyplot
-    print u'\n'
+    print utf('棒グラフ作図モード b_barplot = '), b_barplot
+    print utf('箱ひげ図作図モード b_boxplot = '), b_boxplot
+    print utf('散布図XY作図モード b_xyplot  = '), b_xyplot
+    print utf('\n'
 
     #　棒グラフ作図 --------------------------------------------------
     if b_barplot > 0 :
@@ -227,8 +233,8 @@ if __name__ == '__main__':
 
         # 図に入れる関数名を指定しないと、全ての関数の図が順次作成される
 
-        print 'val_name =', val_name
-        print 'func_name=', func_name
+        print utf('val_name ='), val_name
+        print utf('func_name='), func_name
 
         if b_xyplot == 1 : is_bar = 0
         else :             is_bar = 1
@@ -277,7 +283,7 @@ if __name__ == '__main__':
         val_name  = io.g_keys[3]
         #---------------------
 
-        print 'val_name=', val_name
+        print utf('val_name='), val_name
 
         if len(val_name) > 0 :
             mute = 0

@@ -5,8 +5,8 @@
 # Purpose:
 # Author:      zrm
 # Created:     11/06/2014
-# Copyright:
-# Licence:
+# Copyright: AICS, RIKEN
+# Licence: New BSD (2-caluse)
 #-------------------------------------------------------------------------------
 
 class PlotOption(object):

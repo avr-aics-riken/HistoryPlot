@@ -5,14 +5,33 @@
 # Purpose:
 # Author:      zrm
 # Created:     11/06/2014
-# Copyright:
-# Licence:
+# Copyright: AICS, RIKEN
+# Licence: New BSD (2-caluse)
 #-------------------------------------------------------------------------------
+
+import ParamDef as param
+#--------------------------------------------------------------
+def utf(any_str):
+        if param.G_DECODE_STR == 1 : new_str = any_str.decode('utf-8')
+        else: new_str = any_str
+        return new_str
+#--------------------------------------------------------------
+
+import matplotlib
+
+#Please use 'Agg' If it issues following error
+#"no display name and no $DISPLAY environment"
+#
+#Agg is a non-interactive backend, meaning it won't display
+#on the screen, Show() does not work, it only save to files.
+
+if param.G_USE_AGG == 1: matplotlib.use('Agg')
 
 import matplotlib.font_manager as font_manager
 import matplotlib.patches as patches
 import matplotlib.cbook as cbook
 import matplotlib.pyplot as plt
+
 import numpy as np
 import sys
 
@@ -23,15 +42,30 @@ from Quantile import *
 # 日本語fontの設定
 g_fontsize = 18
 
-# for Windows
-#font_path = 'C:/WINDOWS/Fonts/meiryo.ttc'
-
-# for Mac
-font_path = '/Library/Fonts/Osaka.ttf'
-
-# for CentOS
-#font_path = '/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf'
-
+if   param.G_WINDOWS == 1:
+        # for Windows
+        #ttfフォントでない場合、pdf と eps 作成できません、'konatu.ttf'を使用します。
+        #font_path = 'C:/WINDOWS/Fonts/meiryo.ttc' 
+        font_path = 'konatu.ttf'
+        #  -----------------------------------------------------------------
+        # 『小夏』("Konatu") Copyright (C) 2002〜 桝田道也 All rights reserved.
+        #  http://avoidnotes.org/urlmemo/cache/20050722191344.html#about
+        # 『小夏』のライセンスはver.26（2010-01）までは CC-BY-SA 3.0 でしたが、
+        #  ver.20121218 から The MIT License に変更しました。 
+        #  -----------------------------------------------------------------
+elif param.G_MACOSX == 1:
+        # for Mac
+        font_path = '/Library/Fonts/Osaka.ttf'
+elif param.G_LINUX_K == 1 :
+        # for Linux of K-Computer
+        font_path = '/Please/Specify/ProperFont.ttf'
+elif param.G_LINUX_FOCUS == 1 :
+        # for Linux of FOCUS
+        font_path = '/Please/Specify/ProperFont.ttf'
+else:
+        # for CentOS
+        font_path = '/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf'
+        
 g_font_prop = font_manager.FontProperties(fname=font_path)
 g_font_prop.set_style('normal')
 g_font_prop.set_weight('light')
