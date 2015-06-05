@@ -54,7 +54,7 @@ def read_file(filename, data_block_name, column_names):
 
         #put column names into a string array and a corresponding index array
         #then, we construct a dictionary for finding index by column name.
-        column_names = column_name_line.strip().split(' ')
+        column_names = column_name_line.strip().split()
         #print utf('column_names  :'), column_names
         
         step=1
@@ -64,7 +64,7 @@ def read_file(filename, data_block_name, column_names):
                 
                 line = replace_many_spaces_by_one(line)
 
-                values = line.strip().split(' ')
+                values = line.strip().split()
                 #print utf('values:'), values
 
                 sequence_vec.append(values)

@@ -12,6 +12,13 @@ REVISION HISTORY
 ================
 
 --------------------------
+2015-06-05
+- enhancement
+- add tab and unicode white as a delimiter
+- use Konatsu font as default for all platforms
+
+
+--------------------------
 2015-01-16
 - move Konatu.tff to src/ [0.7.2]
 

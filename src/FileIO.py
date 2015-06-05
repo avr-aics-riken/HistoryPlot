@@ -101,7 +101,7 @@ def read_file(filename):
 def get_data_from_line(line):
         array = []
 
-        #values = line.strip().split(' ')
+        #values = line.strip().split()
         #for key in g_keys:
         #        array.append( values[ g_dict2[key] ] )
 
@@ -121,7 +121,7 @@ def get_data_from_line(line):
 ##	output = []
 ##	with open(filename, 'r') as infile:
 ##		for line in infile:
-##			line = np.array(line.strip().split(' '), dtype=np.float)
+##			line = np.array(line.strip().split(), dtype=np.float)
 ##			output.append(line)
 ##	return output
 

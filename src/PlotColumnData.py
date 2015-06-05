@@ -172,7 +172,7 @@ if __name__ == '__main__':
         
         y_index_dict = {}
 
-        value_s = options.y_index.strip().split(' ')
+        value_s = options.y_index.strip().split()
         for str_s in value_s :
                 if str_s.find('-') > -1:
                         sub_str_s = str_s.strip().split('-')
@@ -208,7 +208,7 @@ if __name__ == '__main__':
         x_lo =  0.0
         x_hi = -1.0 # By default, we set hi bound < low bound
         if options.x_range != '' : 
-                val_ss = options.x_range.strip().split(' ')
+                val_ss = options.x_range.strip().split()
                 if len(val_ss) >=2 :
                         x_lo = float(val_ss[0])
                         x_hi = float(val_ss[1])
@@ -219,7 +219,7 @@ if __name__ == '__main__':
         y_lo =  0.0
         y_hi = -1.0 # By default, we set hi bound < low bound
         if options.y_range != '' : 
-                val_ss = options.y_range.strip().split(' ')
+                val_ss = options.y_range.strip().split()
                 if len(val_ss) >= 2 :
                         y_lo = float(val_ss[0])
                         y_hi = float(val_ss[1])
@@ -232,7 +232,7 @@ if __name__ == '__main__':
         win_dy = 7
         
         if options.win_size != '' :
-                val_ss = options.win_size.strip().split(' ')
+                val_ss = options.win_size.strip().split()
                 if len(val_ss) >= 2 :
                         win_dx = int(val_ss[0])
                         win_dy = int(val_ss[1])

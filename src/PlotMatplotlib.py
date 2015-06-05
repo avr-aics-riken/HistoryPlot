@@ -42,6 +42,10 @@ from Quantile import *
 # 日本語fontの設定
 g_fontsize = 18
 
+import os
+bdir = os.path.dirname(sys.argv[0])
+font_path = os.path.join(bdir, 'Konatu.ttf')
+"""
 if   param.G_WINDOWS == 1:
         # for Windows
         #ttfフォントでない場合、pdf と eps 作成できません、'konatu.ttf'を使用します。
@@ -65,7 +69,8 @@ elif param.G_LINUX_FOCUS == 1 :
 else:
         # for CentOS
         font_path = '/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf'
-        
+"""
+
 g_font_prop = font_manager.FontProperties(fname=font_path)
 g_font_prop.set_style('normal')
 g_font_prop.set_weight('light')
